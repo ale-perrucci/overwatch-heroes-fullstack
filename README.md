@@ -1,8 +1,8 @@
-# overwatch-heroes
-A simple single page application that provides information about Overwatch heroes.
+# overwatch-heroes-fullstack
+A simple single page application built with Node.js and React that provides information about Overwatch heroes.
 
 A demo is hosted on Heroku:
-https://heroes-of-overwatch.herokuapp.com/
+https://overwatch-heroes-fullstack.herokuapp.com/
 
 ## Quick start
 
