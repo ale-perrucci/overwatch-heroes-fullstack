@@ -1,0 +1,140 @@
+.HeroPage {
+  background: #eee;
+  background-image: linear-gradient(to bottom, rgba(50, 0, 200, 0.1), #eee), url("../images/background.jpg");
+  width: 100%;
+  background-size: cover; 
+  padding: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.HeroPage__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: -1rem;
+}
+
+.HeroPage__portrait-container {
+  margin: 0 auto;
+  padding-top: 8rem;
+  padding-left: 1rem; 
+}
+
+.HeroPage__portrait {
+  max-width:100%;
+  max-height:100%;
+}
+
+.HeroPage__container {
+  background-color: rgba(255, 255, 255, .7);
+  border-radius: 3px;
+  padding: 2rem;
+  max-width: 80rem; 
+  min-width: 55rem;
+}
+
+.HeroPage__role {
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #ff9c00;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+
+.HeroPage__description {
+  font-size: 1.7rem;
+  color: #3E474B;
+  font-weight: 400;
+  text-align: justify;
+  margin-bottom: auto;
+  padding-left: 2rem;
+  border-left: #00c3ff 5px solid; 
+  margin: 2rem 0;
+}
+
+
+.Ability {
+  display: flex;
+  justify-content: flex-start; 
+  margin: .5rem 0; 
+  border-radius: 3px;
+  padding: 1rem;
+  /* background-color: #dde; */
+  background-image: linear-gradient(to right, #dde, #ede);
+  overflow: hidden;
+}
+
+.Ability__image-container {
+  flex-shrink: 0;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 200px;
+  /* background-color: #3E474B; */
+  border: #fff 1px solid;
+  position: relative;
+  margin: 0 1rem;
+}
+
+.Ability__image {
+  width: auto;
+  height: auto;
+  max-height: 6rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Ability__body {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 2rem;
+}
+
+.Ability__name {
+  font-size: 2rem;
+  color: #3E474B;
+  font-weight: 900;
+  text-align: left;
+}
+
+.Ability__description {
+  font-size: 1.5rem;
+  color: #3E474B;
+  font-weight: 400;
+  text-align: justify;
+}
+
+
+
+@media screen and (max-width: 1300px) {
+  .HeroPage {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .HeroPage {
+    padding: 0;
+  }
+
+  .HeroPage__container {
+    min-width: 30rem;
+  }
+
+  .Ability__body {
+    margin: 0;
+  }
+
+  .Ability__image-container {
+    display: none;
+  }
+}

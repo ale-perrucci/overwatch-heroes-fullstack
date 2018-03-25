@@ -1,0 +1,67 @@
+.Button {
+  margin: 0.5rem 0; 
+  display: inline-block;
+  background-color: #ff9c00;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  padding: .8rem 2rem .5rem 2rem;
+  vertical-align: middle;
+  outline: none;
+  border-radius: 2px;
+  line-height: 1;
+  letter-spacing: .05rem;
+  transition: all .2s;
+}
+
+.Button:hover {
+  background-color: #ffb033;
+}
+
+.Button:active {
+  background-color: #ffb033;
+}
+
+
+
+.Portrait {
+  height: 12rem;
+  margin: 1rem 2rem;
+  transition: all .2s;
+  clip-path: polygon(50% 15%, 100% 30%, 100% 65%, 50% 80%, 0% 65%, 0% 30%);
+}
+
+
+.Subtitle {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #00c3ff;
+  /* color: #3E474B; */
+}
+
+
+.Star {
+  background-image: url("../images/star.png");
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-size: cover;
+}
+
+.Star--empty {
+  background-position: 0 -31px;
+}
+
+
+.RoleIcon {
+  width: 3.5rem;
+  height: 3.5rem;
+  display: inline-block;
+  margin-bottom: .5rem;
+  margin-left: .5rem; 
+}

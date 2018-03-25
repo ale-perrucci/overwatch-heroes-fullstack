@@ -1,0 +1,3 @@
+node_modules
+db/heroes.json
+routes/initdb.js

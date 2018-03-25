@@ -1,0 +1,115 @@
+.HeroesList {
+  margin: 0 auto;
+  max-width: 150rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.HeroCard {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  justify-content: space-between;
+  overflow: hidden;
+  margin: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: all 0.2s;
+  width: calc(95% / 3);
+  position: relative;
+}
+
+.HeroCard__background {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  opacity: .12;
+  transition: 0.3s ease-out;
+}
+
+.HeroCard:hover .HeroCard__background {
+  transform: scale(2);
+}
+
+.HeroCard:hover .Portrait {
+  transform: scale(1.2);
+}
+
+.HeroCard__header {
+  z-index: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.HeroCard__name, .HeroCard__name a {
+  text-decoration: none;
+  font-size: 4rem;
+  font-weight: 700;
+  color: #3E474B;
+  margin-right: auto;
+}
+
+.HeroCard__description {
+  font-size: 1.5rem;
+  color: #3E474B;
+  font-weight: 400;
+  text-align: justify;
+  margin-bottom: auto;
+}
+
+.HeroCard__button-container {
+  z-index: 0;
+  align-self: flex-end;
+}
+
+.HeroCard__role {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+
+@media screen and (max-width: 1300px) {
+  .HeroesList {
+    max-width: 100rem;
+  }
+
+  .HeroCard {
+    width: 47%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  html {
+    font-size: 55%;
+  }
+
+  .HeroCard {
+    width: 100%;
+    margin: .5rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .HeroCard__name a {
+    font-size: 3rem;
+  }
+
+  .Button {
+    width: 100%;
+  }
+}
