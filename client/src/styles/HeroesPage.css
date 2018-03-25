@@ -50,7 +50,7 @@
 
 .HeroCard__name, .HeroCard__name a {
   text-decoration: none;
-  font-size: 4rem;
+  font-size: 3.8rem;
   font-weight: 700;
   color: #3E474B;
   margin-right: auto;
@@ -62,6 +62,9 @@
   font-weight: 400;
   text-align: justify;
   margin-bottom: auto;
+  max-height: 10rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .HeroCard__button-container {
@@ -77,7 +80,7 @@
 }
 
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1380px) {
   .HeroesList {
     max-width: 100rem;
   }
@@ -87,20 +90,44 @@
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 900px) {
+  .HeroCard {
+    margin: .5rem;
+  }
+
   html {
     font-size: 55%;
   }
 
-  .HeroCard {
-    width: 100%;
-    margin: .5rem;
+  .Star {
+    height: 26px;
+    width: 26px;
+  }
+
+  .Star--empty {
+    background-position: 0 -26px;
+  }
+
+  .RoleIcon {
+    width: 3rem;
+    height: 3rem;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .HeroCard {
+    width: 100%;
+  }
+}
+
 
 @media screen and (max-width: 500px) {
   html {
     font-size: 50%;
+  }
+
+  .Portrait {
+    height: 10rem;
   }
 }
 

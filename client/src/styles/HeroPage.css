@@ -27,6 +27,19 @@
   max-height:100%;
 }
 
+.HeroPage__portrait__name {
+  font-size: 5rem;
+  font-weight: bolder;
+  text-align: center;
+  text-transform: uppercase;
+  font-style: italic;
+  color: #fff;
+  background: -webkit-linear-gradient(#fff 30%,rgba(0,0,0,.25));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: none;
+}
+
 .HeroPage__container {
   background-color: rgba(255, 255, 255, .7);
   border-radius: 3px;
@@ -44,7 +57,6 @@
   flex-direction: row;
   align-items: flex-start;
 }
-
 
 .HeroPage__description {
   font-size: 1.7rem;
@@ -116,8 +128,16 @@
 
 @media screen and (max-width: 1300px) {
   .HeroPage {
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
+  }
+
+  .HeroPage__portrait__name {
+    display: block;
+  }
+
+  .HeroPage__header {
+    display: none;
   }
 }
 

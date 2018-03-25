@@ -61,8 +61,8 @@ class HeroPage extends Component {
             </div>
           </div>
         
-          <div>
-            <p className="HeroPage__description">{hero.description}</p>
+          <div className="HeroPage__description">
+            <p>{hero.description}</p>
           </div>
 
           <div>
@@ -73,6 +73,7 @@ class HeroPage extends Component {
 
 
         <div className="HeroPage__portrait-container">
+          <h1 className="HeroPage__portrait__name" >{hero.name}</h1>
           <img className="HeroPage__portrait" src={hero.portrait} alt="Hero portrait"/>
         </div>
       </div>
