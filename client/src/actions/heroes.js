@@ -9,9 +9,9 @@ export const loadHeroesStart = () => ({
   type: LOAD_START
 });
 
-export const loadHeroesSuccess = (heroes, filter, allHeroesLoaded) => ({
+export const loadHeroesSuccess = (heroes, allHeroesLoaded, filtered) => ({
   type: LOAD_SUCCESS,
-  payload: {list: heroes, filter, allHeroesLoaded}
+  payload: {list: heroes, allHeroesLoaded, filtered}
 });
 
 export const loadHeroesFailure = (error) => ({
@@ -35,7 +35,7 @@ export const loadHeroes = (limit) => async (dispatch, getState) => {
     }
   })
   .then(res => {
-    dispatch(loadHeroesSuccess(res.data.heroes, res.data.done));
+    dispatch(loadHeroesSuccess(res.data.heroes, res.data.done, filter.length>0));
   })
   .catch(error => {
     dispatch(loadHeroesFailure(error));
@@ -45,5 +45,8 @@ export const loadHeroes = (limit) => async (dispatch, getState) => {
 
 export const filterHeroes = (text) => async (dispatch, getState) => {
   await dispatch(filterByName(text));
-  dispatch(loadHeroes(3));
+
+  const { lastname } = getState().heroes;
+  if (text >= lastname)
+    dispatch(loadHeroes());
 };

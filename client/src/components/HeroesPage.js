@@ -79,8 +79,10 @@ class HeroesPage extends Component {
 
 const mapStateToProps = (state) => {
   const { list, isLoading, allHeroesLoaded, filter } = state.heroes;
+  const filteredList = list.filter(h => h.name.startsWith(filter) || h.name_plain.startsWith(filter));
+
   return {
-    heroes: list,
+    heroes: filteredList,
     isLoading,
     allHeroesLoaded,
     filter

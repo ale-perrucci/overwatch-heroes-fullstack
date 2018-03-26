@@ -15,8 +15,8 @@ export default (state = INITIAL_STATE, action) => {
         ...state, isLoading: true
       };
     case actions.LOAD_SUCCESS:
-      const { list, allHeroesLoaded } = action.payload;
-      const lastname = list.length > 0 ? list[list.length - 1].name : state.lastname;
+      const { list, allHeroesLoaded, filtered } = action.payload;
+      const lastname = !filtered && list.length > 0 ? list[list.length - 1].name : state.lastname;
 
       let newList = list.reduce((heroes, hero) => {
         if (heroes.find(h => h._id === hero._id) === undefined) {
@@ -35,11 +35,8 @@ export default (state = INITIAL_STATE, action) => {
         ...state, list: newList, lastname, isLoading: false, allHeroesLoaded
       };
     case actions.FILTER:
-      const text = action.payload;
-      const newLastname = text.startsWith(state.filter) ? state.lastname : '';
-      var filteredList = state.list.filter(h => h.name.startsWith(text) || h.name_plain.startsWith(text));
       return {
-        ...state, list: filteredList, filter: text, allHeroesLoaded: false, lastname: newLastname
+        ...state, filter: action.payload, allHeroesLoaded: false
       }
     default:
       return state;
