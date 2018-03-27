@@ -5,8 +5,28 @@ const INITIAL_STATE = {
   filter: '',
   lastname: '',
   isLoading: false,
-  allHeroesLoaded: false
+  allHeroesLoaded: false,
+  filterList: [] //only the heroes found with filtered search
 };
+
+function addHeroesAndSort (list, newHeroes) {
+  let newList = newHeroes.reduce((heroes, hero) => {
+    if (heroes.find(h => h._id === hero._id) === undefined) {
+      heroes.push(hero);
+      
+    }
+    return heroes;
+  }, [...list]);
+
+  newList = newList.sort((a, b) => {
+    if(a.name < b.name) return -1;
+    if(a.name > b.name) return 1;
+    return 0;
+  });
+
+  return newList;
+}
+
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -15,30 +35,20 @@ export default (state = INITIAL_STATE, action) => {
         ...state, isLoading: true
       };
     case actions.LOAD_SUCCESS:
-      const { list, done } = action.payload;
-      const filtered = state.filter.length > 0;
+      const { list, done, filtered } = action.payload;
       
-      const lastname = !filtered && list.length > 0 ? list[list.length - 1].name : state.lastname;
+      if (filtered) {
+        return { ...state, isLoading: false, filterList: list };
+      }
 
-      let newList = list.reduce((heroes, hero) => {
-        if (heroes.find(h => h._id === hero._id) === undefined) {
-          heroes.push(hero);
-        }
-        return heroes;
-      }, [...state.list]);
-
-      newList = newList.sort((a, b) => {
-        if(a.name < b.name) return -1;
-        if(a.name > b.name) return 1;
-        return 0;
-      });
-
+      const lastname = list.length > 0 ? list[list.length - 1].name : state.lastname;
+      const newList = addHeroesAndSort(state.list, list);
       return {
-        ...state, list: newList, lastname, isLoading: false, allHeroesLoaded: done || state.allHeroesLoaded
+        ...state, list: newList, lastname, isLoading: false, allHeroesLoaded: done
       };
     case actions.FILTER:
       return {
-        ...state, filter: action.payload
+        ...state, filter: action.payload, filterList: action.payload.length === 0 ? [] : state.filterList
       }
     default:
       return state;

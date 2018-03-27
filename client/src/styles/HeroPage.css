@@ -33,6 +33,7 @@
   text-align: center;
   text-transform: uppercase;
   font-style: italic;
+  padding: 1rem;
   color: #fff;
   background: -webkit-linear-gradient(#fff 30%,rgba(0,0,0,.25));
   -webkit-background-clip: text;
@@ -135,7 +136,7 @@
   }
 
   .HeroPage__portrait-container {
-    padding-top: 2rem; 
+    padding-top: 0; 
   }
 
   .HeroPage__portrait {
@@ -154,6 +155,10 @@
 @media screen and (max-width: 500px) {
   .HeroPage {
     padding: 0;
+  }
+
+  .HeroPage__portrait-container {
+    padding-top: 2rem; 
   }
 
   .HeroPage__container {

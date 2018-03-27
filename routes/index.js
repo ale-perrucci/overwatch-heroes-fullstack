@@ -1,8 +1,7 @@
 const path = require('path');
 
 module.exports = function(app, db) {
-  console.log(process.env.NODE_ENV);
-
+  
   if (process.env.NODE_ENV !== "production")
     app.use("/api/initdb", require("./initdb")(db));
   

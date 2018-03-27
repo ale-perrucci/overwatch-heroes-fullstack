@@ -6,18 +6,12 @@ import TextInput from './TextInput';
 import { loadHeroes, filterHeroes } from '../actions/heroes'; 
 
 class HeroesPage extends Component {
-  state = { 
-
-  }
   
-  loadHeroes = (number, resetArray) => {
+  loadHeroes = (number) => {
     this.props.loadHeroes(number);
   }
 
-  
-
   conditionalLoadHeroes = () => {
-    console.log("load")
     const {isLoading, allHeroesLoaded} = this.props;
     if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 300) &&
       !isLoading && !allHeroesLoaded
@@ -53,8 +47,6 @@ class HeroesPage extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.allHeroesLoaded === false && this.props.allHeroesLoaded === true)
       this.detachScrollListener();
-    else if (prevProps.allHeroesLoaded === true && this.props.allHeroesLoaded === false)
-      this.attachScrollListener();
       
     if (this.props.heroes.length > prevProps.heroes.length) {
       this.conditionalLoadHeroes();
@@ -62,7 +54,7 @@ class HeroesPage extends Component {
   }
 
   render() {
-    const { heroes, filter } = this.props;
+    const { visibleHeroes, filter } = this.props;
 
     return (
       <Fragment>
@@ -71,7 +63,7 @@ class HeroesPage extends Component {
         </header>
         <TextInput label="Search" value={filter} onTextChange={this.handleFilterChange}/>
         <div className="HeroesList">
-          {heroes.map(h => <HeroCard key={h._id} hero={h} />)}
+          {visibleHeroes.map(h => <HeroCard key={h._id} hero={h} />)}
         </div>
       </Fragment>
     );
@@ -79,11 +71,12 @@ class HeroesPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { list, isLoading, allHeroesLoaded, filter } = state.heroes;
-  const filteredList = list.filter(h => h.name.toLowerCase().startsWith(filter.toLowerCase()) || h.name_plain.toLowerCase().startsWith(filter.toLowerCase()));
+  const { list, isLoading, allHeroesLoaded, filter, filterList } = state.heroes;
+  const filteredList = list.concat(filterList).filter(h => h.name.toLowerCase().startsWith(filter.toLowerCase()) || h.name_plain.toLowerCase().startsWith(filter.toLowerCase()));
 
   return {
-    heroes: filteredList,
+    heroes: list,
+    visibleHeroes: filteredList,
     isLoading,
     allHeroesLoaded,
     filter
