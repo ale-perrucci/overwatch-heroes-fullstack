@@ -17,6 +17,7 @@ class HeroesPage extends Component {
   
 
   conditionalLoadHeroes = () => {
+    console.log("load")
     const {isLoading, allHeroesLoaded} = this.props;
     if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 300) &&
       !isLoading && !allHeroesLoaded
@@ -55,7 +56,7 @@ class HeroesPage extends Component {
     else if (prevProps.allHeroesLoaded === true && this.props.allHeroesLoaded === false)
       this.attachScrollListener();
       
-    if (this.props.heroes > prevProps.heroes) {
+    if (this.props.heroes.length > prevProps.heroes.length) {
       this.conditionalLoadHeroes();
     }
   }
@@ -79,7 +80,7 @@ class HeroesPage extends Component {
 
 const mapStateToProps = (state) => {
   const { list, isLoading, allHeroesLoaded, filter } = state.heroes;
-  const filteredList = list.filter(h => h.name.startsWith(filter) || h.name_plain.startsWith(filter));
+  const filteredList = list.filter(h => h.name.toLowerCase().startsWith(filter.toLowerCase()) || h.name_plain.toLowerCase().startsWith(filter.toLowerCase()));
 
   return {
     heroes: filteredList,

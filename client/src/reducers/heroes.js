@@ -15,7 +15,9 @@ export default (state = INITIAL_STATE, action) => {
         ...state, isLoading: true
       };
     case actions.LOAD_SUCCESS:
-      const { list, allHeroesLoaded, filtered } = action.payload;
+      const { list, done } = action.payload;
+      const filtered = state.filter.length > 0;
+      
       const lastname = !filtered && list.length > 0 ? list[list.length - 1].name : state.lastname;
 
       let newList = list.reduce((heroes, hero) => {
@@ -32,11 +34,11 @@ export default (state = INITIAL_STATE, action) => {
       });
 
       return {
-        ...state, list: newList, lastname, isLoading: false, allHeroesLoaded
+        ...state, list: newList, lastname, isLoading: false, allHeroesLoaded: done || state.allHeroesLoaded
       };
     case actions.FILTER:
       return {
-        ...state, filter: action.payload, allHeroesLoaded: false
+        ...state, filter: action.payload
       }
     default:
       return state;

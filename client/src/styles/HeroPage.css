@@ -97,6 +97,7 @@
   width: auto;
   height: auto;
   max-height: 6rem;
+  max-width: 13rem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -131,6 +132,14 @@
   .HeroPage {
     flex-direction: column-reverse;
     align-items: center;
+  }
+
+  .HeroPage__portrait-container {
+    padding-top: 2rem; 
+  }
+
+  .HeroPage__portrait {
+    max-height: 60rem; 
   }
 
   .HeroPage__portrait__name {

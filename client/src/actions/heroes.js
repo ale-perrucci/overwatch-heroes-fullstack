@@ -5,13 +5,14 @@ export const LOAD_SUCCESS = 'heroes/LOAD_SUCCESS';
 export const LOAD_FAILURE = 'heroes/LOAD_FAILURE';
 export const FILTER = 'heroes/FILTER';
 
-export const loadHeroesStart = () => ({
-  type: LOAD_START
+export const loadHeroesStart = (filter, lastname) => ({
+  type: LOAD_START,
+  payload: { filter, lastname }
 });
 
-export const loadHeroesSuccess = (heroes, allHeroesLoaded, filtered) => ({
+export const loadHeroesSuccess = (heroes, done) => ({
   type: LOAD_SUCCESS,
-  payload: {list: heroes, allHeroesLoaded, filtered}
+  payload: { list: heroes, done }
 });
 
 export const loadHeroesFailure = (error) => ({
@@ -25,8 +26,8 @@ export const filterByName = (filter) => ({
 });
 
 export const loadHeroes = (limit) => async (dispatch, getState) => {
-  dispatch(loadHeroesStart());
   const { filter, lastname } = getState().heroes;
+  dispatch(loadHeroesStart(filter, lastname));
   axios.get('/api/heroes', {
     params: {
       filter,
@@ -35,7 +36,7 @@ export const loadHeroes = (limit) => async (dispatch, getState) => {
     }
   })
   .then(res => {
-    dispatch(loadHeroesSuccess(res.data.heroes, res.data.done, filter.length>0));
+    dispatch(loadHeroesSuccess(res.data.heroes, res.data.done));
   })
   .catch(error => {
     dispatch(loadHeroesFailure(error));
@@ -47,6 +48,6 @@ export const filterHeroes = (text) => async (dispatch, getState) => {
   await dispatch(filterByName(text));
 
   const { lastname } = getState().heroes;
-  if (text >= lastname)
+  if (text.length > 0 && text.toLowerCase() >= lastname.toLowerCase().slice(0, text.length))
     dispatch(loadHeroes());
 };
